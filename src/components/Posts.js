@@ -1,8 +1,7 @@
-import React, {useEffect, useState, Fragment} from "react"
-import axios from "axios";
+import React, {useEffect, useState} from "react"
 import {connect, useDispatch} from 'react-redux';
 import fetchPosts from '../actions/postAction'
-
+import PropTypes from 'prop-types';
 
 
 function Posts ({posts}){
@@ -40,9 +39,15 @@ function Posts ({posts}){
         
     )
 }
+Posts.propTypes = {
+  //  fetchPosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired
+}
 
-
-const mapStateToProps = state => ({
-    posts: state.posts ? state.posts.items : [] // posts because whatever you name in rootReducer
-})
+const mapStateToProps = state => {
+    console.log("here", state)
+    return {
+        posts: state.posts ? state.posts.items : [] // posts because whatever you name in rootReducer
+    } 
+}
 export default connect(mapStateToProps)(Posts);

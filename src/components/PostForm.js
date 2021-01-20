@@ -1,26 +1,25 @@
-import React, {useState} from "react"
-import { Provider } from "react-redux"
+import React, {useState,useEffect} from "react"
+import { connect, useDispatch } from "react-redux";
+import PropTypes from 'prop-types';
+import {createPost} from "../actions/postAction";
 
-export default function PostForm (){
+ function PostForm (){
     const [obody, setBody] = useState({body:'', title:''})
-    const onChange = (e)=> {
-        setBody({[e.target.name]:e.target.value})
-
-        const post = {
-            title: obody.title,
-            body: obody.body
-        }
+    const dispatch = useDispatch();
     
+    const onChange = (e)=> {
+        setBody({...obody, [e.target.name]:e.target.value})
     }
-    const onSubmit = (e)=> {
+
+
+    const Submit = (e)=> {
         e.preventDefault();
+        createPost(dispatch, obody)        
+    }
 
-        const post = {
-            title: obody.title,
-            body: obody.body
-        }
 
-        fetch('https://jsonplaceholder.typicode.com/posts', {
+            /*/this will get transferred and called from actions now tat Redux is installed
+       /* fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -28,15 +27,17 @@ export default function PostForm (){
             body: JSON.stringify(post)
         })
         .then(res=> res.json())
-        .then(data=> console.log(data));
-    }
+        .then(data=> console.log(data));*/
+
+
+    
     return(
        
         <div>
             <h1>
                 Add Posts
             </h1>
-            <form onSubmit= {onSubmit}>
+            <form onSubmit= {Submit}>
                 <div>
                 <label> Title: </label> <br/>
                 <input type = "text"
@@ -60,3 +61,4 @@ export default function PostForm (){
 }
 
 
+export default PostForm

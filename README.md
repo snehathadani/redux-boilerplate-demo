@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+Install Reedux, React-Redux and Redux -Thunk
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Thunk is a middleware for redux that allows to directly access dispach methods and make asynchronous calls from actions
 
-## Available Scripts
+Provider is a React component that binds react with redux.
+import {Provider} from 'react-redux';
 
-In the project directory, you can run:
+Inside provider you need to define a store. Store holds the whole state tree of an application. You can change the app state by dispaching actions. Store has getState(), dispach(action), subscribe(listener), replaceReducer(nextReducer) methods in it.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Create a store by using a function called createStore(rootReducer, [preloadedState], [any enhancer function])
+onst store = createStore(()=> [], {}, applyMiddleware)
+import {createStore, applyMiddleware} from 'redux';
+You can create a separate store folder or keep all in one place.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+create a reducer folder and add separate files for all your reducers. This is helpul as having separate reducers can help with scaling your app. The index.js file inside reducer can keep track of all your reducers inside a single variable combinereducers.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Set up another folder actions. 
+Optional: declare types and you can use them as variables throughout the application, More of a convineance, not a requirement.
+Then in the action folder start describing your actions. Thunk middleware can allow to call dispach function directly so that you can make asynchronous requests. Dispach works similar to resolve and a promise. You give type and a payload.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

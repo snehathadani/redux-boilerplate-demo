@@ -17,7 +17,7 @@ create a reducer folder and add separate files for all your reducers. This is he
 
 
 Set up another folder actions. 
-Optional: declare types and you can use them as variables throughout the application, More of a convineance, not a requirement.
+Optional: declare types and you can use them as variables throughout the application, More of a convenience, not a requirement.
 Then in the action folder start describing your actions. Thunk middleware can allow to call dispach function directly so that you can make asynchronous requests. Dispach works similar to resolve and a promise. You give type and a payload.
 
 each action creator is a function. You can create as many action creators as your app requires. 
@@ -26,3 +26,5 @@ Now that you have redux, you do not need useEffect to handle the sideEffect. The
 
 
 After defining a function inside action call it inside a reducer.
+
+Note: createPost will not work and won't render on ui as it is a private server. You can check the console.logs and see it adds into arrays.

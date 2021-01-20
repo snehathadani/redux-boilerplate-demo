@@ -31,7 +31,7 @@ export default function PostForm (){
         .then(data=> console.log(data));
     }
     return(
-        <Provider store ={store}>
+       
         <div>
             <h1>
                 Add Posts
@@ -55,7 +55,7 @@ export default function PostForm (){
                 <button type = "submit">Submit</button>
                 </form>
         </div>
-        </Provider>
+        
     )
 }
 

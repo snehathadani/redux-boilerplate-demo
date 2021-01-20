@@ -20,4 +20,9 @@ Set up another folder actions.
 Optional: declare types and you can use them as variables throughout the application, More of a convineance, not a requirement.
 Then in the action folder start describing your actions. Thunk middleware can allow to call dispach function directly so that you can make asynchronous requests. Dispach works similar to resolve and a promise. You give type and a payload.
 
+each action creator is a function. You can create as many action creators as your app requires. 
 
+Now that you have redux, you do not need useEffect to handle the sideEffect. The new state will be injected inside the componets using dispach. So pull the logic out of useEffect and make dispach do the work. In useEffect we set the new state depending upon the payload. 
+
+
+After defining a function inside action call it inside a reducer.

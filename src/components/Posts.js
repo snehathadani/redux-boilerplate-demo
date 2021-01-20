@@ -1,9 +1,14 @@
 import React, {useEffect, useState, Fragment} from "react"
 import axios from "axios";
-export default function Posts (){
+import {connect, useDispatch} from 'react-redux';
+import fetchPosts from '../actions/postAction'
 
-    const [initialPosts, setPosts] = useState([])
-    useEffect(()=> {
+
+
+function Posts ({posts}){
+
+    //const [initialPosts, setPosts] = useState([])
+   /* useEffect(()=> {
         const fetchData = async()=> {
             const result = await axios(
                 'https://jsonplaceholder.typicode.com/posts',
@@ -12,12 +17,18 @@ export default function Posts (){
         }
         fetchData();
     }, [])
+    */
+  const dispatch = useDispatch();
+  useEffect(()=> {
+      console.log("calling fetch")
+      fetchPosts(dispatch)
+  }, [])
 
     return(
         
         <div>
             <h1>Posts</h1>
-        {initialPosts.map(e=> {
+        {posts.map(e=> {
             return(
                 <ul>
                 <li key = {e.userId}>{e.title}</li>
@@ -31,3 +42,7 @@ export default function Posts (){
 }
 
 
+const mapStateToProps = state => ({
+    posts: state.posts ? state.posts.items : [] // posts because whatever you name in rootReducer
+})
+export default connect(mapStateToProps)(Posts);
